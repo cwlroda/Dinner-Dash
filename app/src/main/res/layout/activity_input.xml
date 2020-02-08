@@ -24,39 +24,22 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/addBtn"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="bottom"-->
-<!--        android:layout_margin="@dimen/lowerBtn_margin"-->
-<!--        app:srcCompat="@android:drawable/ic_input_add" />-->
-
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/proceedBtn"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="bottom|end"-->
-<!--        android:layout_margin="@dimen/lowerBtn_margin"-->
-<!--        app:srcCompat="@android:drawable/ic_media_play" />-->
-
     <LinearLayout
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_margin="@dimen/lowerBtn_margin"
-        android:layout_gravity="end|bottom"
-        android:layout_alignParentBottom="true">
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:orientation="horizontal">
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_margin="@dimen/lowerBtn_margin"
             app:srcCompat="@android:drawable/ic_input_add" />
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/proceedBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_margin="@dimen/lowerBtn_margin"
             app:srcCompat="@android:drawable/ic_media_play"/>
     </LinearLayout>
 
