@@ -2,18 +2,19 @@ package com.example.someapp;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.tabs.TabLayout;
-
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.text.InputType;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
 import com.example.someapp.ui.tabs.SectionsPagerAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
 
 public class InputActivity extends AppCompatActivity {
 
@@ -33,7 +34,6 @@ public class InputActivity extends AppCompatActivity {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: open popup
                 openPopUp();
             }
         });
@@ -41,21 +41,30 @@ public class InputActivity extends AppCompatActivity {
         procBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: continue to next activity
+                gotoRecipeActivity();
             }
         });
     }
 
     private void openPopUp() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("What do you want to add?");
-            alertDialogBuilder.setPositiveButton("add",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        Toast.makeText(InputActivity.this,"added ingredient",Toast.LENGTH_LONG).show();
-                    }
-                });
+        alertDialogBuilder.setMessage("Adding Ingredients!");
+
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        alertDialogBuilder.setView(input);
+
+        alertDialogBuilder.setPositiveButton("add",
+            new DialogInterface.OnClickListener() {
+                // TODO: put m_Text into interface
+                private String m_Text;
+
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+                    m_Text = input.getText().toString();
+                    Toast.makeText(InputActivity.this,"added ingredient", Toast.LENGTH_LONG).show();
+                }
+            });
 
         alertDialogBuilder.setNegativeButton("cancel",new DialogInterface.OnClickListener() {
             @Override
@@ -66,6 +75,11 @@ public class InputActivity extends AppCompatActivity {
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+    }
+
+    private void gotoRecipeActivity() {
+        Intent intent = new Intent(this, OutputActivity.class);
+        startActivity(intent);
     }
 
 }
