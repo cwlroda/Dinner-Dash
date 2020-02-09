@@ -29,48 +29,37 @@ public class Database {
             Object obj = jsonParser.parse(new FileReader("dataBase.json"));
             recipes = (JSONObject) obj;
 
-            //for(int i=6663; i<24180; i++){
-            JSONObject tmp = (JSONObject) recipes.get(Integer.toString(6663));
-            name.add(String.valueOf(tmp.get("Name")));
-            JSONObject tmp2 = (JSONObject) tmp.get("Ingredients");
-            //Map<String, Double> tmp3 = new HashMap<>();
-            System.out.println(tmp2);
-            List<String> l = new ArrayList<>();
+            for(int i=6663; i<24180; i++){
+                JSONObject tmp = (JSONObject) recipes.get(Integer.toString(i));
+                name.add(String.valueOf(tmp.get("Name")));
+                JSONObject tmp2 = (JSONObject) tmp.get("Ingredients");
+                //Map<String, Double> tmp3 = new HashMap<>();
+                System.out.println(tmp2);
+                List<String> l = new ArrayList<>();
 
-            Iterator<String> keys = tmp2.keys();
+                Iterator<String> keys = tmp2.keys();
 
-            Map<String, Double> m = new HashMap<>();
+                Map<String, Double> m = new HashMap<>();
 
-            while (keys.hasNext()) {
-                String key = keys.next();
-                //JSONObject tmp4 = (JSONObject)tmp2.get(key);
-                List<String> tmp5 = new ArrayList<>();
-                String s = String.valueOf(tmp2.get(key));
-                String[] arrS = s.split("\"");
+                while (keys.hasNext()) {
+                    String key = keys.next();
+                    //JSONObject tmp4 = (JSONObject)tmp2.get(key);
+                    List<String> tmp5 = new ArrayList<>();
+                    String s = String.valueOf(tmp2.get(key));
+                    String[] arrS = s.split("\"");
 
-                try {
-                    if (arrS.length >= 2) {
-                        m.put(key, Double.parseDouble(arrS[1]));
+                    try {
+                        if (arrS.length >= 2) {
+                            m.put(key, Double.parseDouble(arrS[1]));
+                        }
+                    } catch (NumberFormatException e) {
+
                     }
-                } catch (NumberFormatException e) {
-
                 }
+
+                ingredients.add(m);
+                instructions.add(String.valueOf(tmp.get("Instructions")));
             }
-
-            ingredients.add(m);
-            for (int i = 0; i < ingredients.size(); i++) {
-                System.out.println(Arrays.toString(ingredients.get(i).entrySet().toArray()));
-            }
-                
-
-            /* String tmp4 = String.valueOf(tmp3.get("question"));
-            System.out.println(tmp4); */
-
-            //for(int i=0; i<name.size(); i++){
-            System.out.println(name.get(0));
-            //}
-
-            System.exit(1);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -96,7 +85,7 @@ public class Database {
         return ingredients.get(index);
     }
 
-    public List<String> getInstructions(int index) {
+    public String getInstructions(int index) {
         return instructions.get(index);
     }
 
