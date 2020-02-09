@@ -23,12 +23,12 @@ public class OutputActivity extends AppCompatActivity {
         String facts;
         if (extras != null) {
             ingrds = extras.getString("ingredients");
-            equips = extras.getString("equipments");
-            facts = extras.getString("factors");
+//            equips = extras.getString("equipments");
+//            facts = extras.getString("factors");
 
             Map<String, Double> ingredients = getIngredients(ingrds);
-            Map<String, Double> equipments = getEquipments(equips);
-            Map<String, Integer> factors = getFactors(facts);
+//            Map<String, Double> equipments = getEquipments(equips);
+//            Map<String, Integer> factors = getFactors(facts);
 
             Recipe recipe = magic_algorithm(ingredients);
 
@@ -52,18 +52,20 @@ public class OutputActivity extends AppCompatActivity {
         // can ignore the first two lines - bc it is "Ingredient ... Quantity\n"
         for (int i = 2; i < lines.length; i++) {
             String[] tokens = lines[i].split("[ \t]+");
-            map.put(tokens[0], Double.parseDouble(tokens[1]));
+            if (tokens[0] != null && tokens[1] != null) {
+                map.put(tokens[0], Double.parseDouble(tokens[1]));
+            }
         }
 
         return map;
     }
 
-    private Map<String, Double> getEquipments(String equips) {
-        return null;
-    }
-
-    private Map<String, Integer> getFactors(String facts) {
-        return null;
-    }
+//    private Map<String, Double> getEquipments(String equips) {
+//        return null;
+//    }
+//
+//    private Map<String, Integer> getFactors(String facts) {
+//        return null;
+//    }
 
 }
