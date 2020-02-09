@@ -11,6 +11,7 @@ import java.util.List;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.Iterator;
 
 //import org.json.simple.*;
 import org.json.simple.JSONArray;
@@ -43,14 +44,33 @@ public class Database{
                 System.out.println(tmp2);
                 List<String> l = new ArrayList<>();
 
-                String[] keys = JSONObject.getNames(tmp2);
+                Iterator<String> keys = tmp2.keySet().iterator();
 
-                for(String key : tmp2.keySet()){
+                Map<String, Double> m = new HashMap<>();
 
+                while(keys.hasNext()){
+                    String key = keys.next();
+                    //JSONObject tmp4 = (JSONObject)tmp2.get(key);
+                    List<String> tmp5 = new ArrayList<>();
+                    String s = String.valueOf(tmp2.get(key));
+                    String[] arrS = s.split("\"");
+
+                    try{
+                        if(arrS.length >= 2){
+                            m.put(key, Double.parseDouble(arrS[1]));
+                        }
+                    } catch(NumberFormatException e){
+
+                    }
                 }
-                l.add(ArrayList.valueOf(tmp2.get(key)))
-                /* JSONObject tmp3 = (JSONObject)tmp2.get("q1");
-                String tmp4 = String.valueOf(tmp3.get("question"));
+
+                ingredients.add(m);
+                for (int i=0; i<ingredients.size(); i++){
+                    System.out.println(Arrays.toString(ingredients.get(i).entrySet().toArray()));
+                }
+                
+
+                /* String tmp4 = String.valueOf(tmp3.get("question"));
                 System.out.println(tmp4); */
             //}
 
