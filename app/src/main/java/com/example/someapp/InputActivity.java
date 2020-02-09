@@ -22,7 +22,7 @@ public class InputActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        final SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
@@ -31,10 +31,13 @@ public class InputActivity extends AppCompatActivity {
         FloatingActionButton addBtn = findViewById(R.id.addBtn);
         FloatingActionButton procBtn = findViewById(R.id.proceedBtn);
 
+        final String[] input = new String[1];
+
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openPopUp();
+                input[0] = openPopUp();
+                sectionsPagerAdapter.getFragment(0).addItem(input[0]);
             }
         });
 
@@ -46,25 +49,24 @@ public class InputActivity extends AppCompatActivity {
         });
     }
 
-    private void openPopUp() {
+    private String openPopUp() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("Adding Ingredients!");
 
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         alertDialogBuilder.setView(input);
+        final String[] m_Text = new String[1];
 
-        alertDialogBuilder.setPositiveButton("add",
-            new DialogInterface.OnClickListener() {
-                // TODO: put m_Text into interface
-                private String m_Text;
-
-                @Override
-                public void onClick(DialogInterface arg0, int arg1) {
-                    m_Text = input.getText().toString();
-                    Toast.makeText(InputActivity.this,"added ingredient", Toast.LENGTH_LONG).show();
-                }
-            });
+        alertDialogBuilder.setPositiveButton("add", new DialogInterface.OnClickListener() {
+            // TODO: put m_Text into interface
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                m_Text[0] = input.getText().toString();
+                // TODO: change this to have quantity too
+                Toast.makeText(InputActivity.this,"added ingredient", Toast.LENGTH_LONG).show();
+            }
+        });
 
         alertDialogBuilder.setNegativeButton("cancel",new DialogInterface.OnClickListener() {
             @Override
@@ -75,6 +77,8 @@ public class InputActivity extends AppCompatActivity {
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+
+        return m_Text[0];
     }
 
     private void gotoRecipeActivity() {
