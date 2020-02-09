@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class PageViewModel extends ViewModel {
 
-    private Map<String, Integer> mItems = new HashMap<>();
+    private Map<String, Double> mItems = new HashMap<>();
     private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
 
     private static final String NUM_SPACES = "                  ";
@@ -40,11 +40,9 @@ public class PageViewModel extends ViewModel {
     }
 
     private void updateLiveText() {
-        System.out.println("updateLiveText called. before: " + mIndex.getValue());
         mText = Transformations.map(mIndex, new Function<Integer, String>() {
             @Override
             public String apply(Integer input) {
-                System.out.println("switching to tab " + input);
             if (input == 1) {
                 // ingredients tab
                 return ingredientsToString(mItems);
@@ -71,11 +69,11 @@ public class PageViewModel extends ViewModel {
         return this.mText;
     }
 
-    public Map<String, Integer> getItems() {
+    public Map<String, Double> getItems() {
         return mItems;
     }
 
-    private String ingredientsToString(Map<String, Integer> items) {
+    public String ingredientsToString(Map<String, Double> items) {
         StringBuilder sb = new StringBuilder();
         sb.append("Ingredient" + NUM_SPACES);
         sb.append("Quantity");
@@ -91,7 +89,7 @@ public class PageViewModel extends ViewModel {
         return sb.toString();
     }
 
-    private String equipmentsToString(Map<String, Integer> items) {
+    public String equipmentsToString(Map<String, Double> items) {
         StringBuilder sb = new StringBuilder();
         sb.append("Equipment" + NUM_SPACES);
         sb.append("Quantity");
@@ -107,7 +105,7 @@ public class PageViewModel extends ViewModel {
         return sb.toString();
     }
 
-    private String factorsToString(Map<String, Integer> items) {
+    public String factorsToString(Map<String, Double> items) {
         StringBuilder sb = new StringBuilder();
         sb.append("Factor" + NUM_SPACES);
         sb.append("Given Value");
