@@ -92,15 +92,15 @@ public class InputActivity extends AppCompatActivity {
         Map<String, Double> ingrdItems = ingrdPVM.getItems();
         intent.putExtra("ingredients", ingrdPVM.ingredientsToString(ingrdItems));
 
-//        // for equipments
-//        PageViewModel equipPVM = this.sectionsPagerAdapter.getFragment(1).getPageViewModel();
-//        Map<String, Double> equipItems = equipPVM.getItems();
-//        intent.putExtra("equipments", equipPVM.equipmentsToString(equipItems));
-//
-//        // for factors
-//        PageViewModel factPVM = this.sectionsPagerAdapter.getFragment(2).getPageViewModel();
-//        Map<String, Double> factItems = factPVM.getItems();
-//        intent.putExtra("factors", ingrdPVM.factorsToString(factItems));
+        // for equipments
+        PageViewModel equipPVM = this.sectionsPagerAdapter.getFragment(1).getPageViewModel();
+        Map<String, Double> equipItems = equipPVM.getItems();
+        intent.putExtra("equipments", equipPVM.equipmentsToString(equipItems));
+
+        // for factors
+        PageViewModel factPVM = this.sectionsPagerAdapter.getFragment(2).getPageViewModel();
+        Map<String, Double> factItems = factPVM.getItems();
+        intent.putExtra("factors", ingrdPVM.factorsToString(factItems));
 
         startActivity(intent);
     }

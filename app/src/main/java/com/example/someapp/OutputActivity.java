@@ -23,20 +23,25 @@ public class OutputActivity extends AppCompatActivity {
         String facts;
         if (extras != null) {
             ingrds = extras.getString("ingredients");
-//            equips = extras.getString("equipments");
-//            facts = extras.getString("factors");
+            equips = extras.getString("equipments");
+            facts = extras.getString("factors");
 
-            Map<String, Double> ingredients = getIngredients(ingrds);
-//            Map<String, Double> equipments = getEquipments(equips);
-//            Map<String, Integer> factors = getFactors(facts);
+            assert ingrds != null;
+            Map<String, Double> ingredients = getItems(ingrds);
+            assert equips != null;
+            Map<String, Double> equipments = getItems(equips);
+            assert facts != null;
+            Map<String, Double> factors = getItems(facts);
 
-            Recipe recipe = magic_algorithm(ingredients);
+            Recipe recipe = magic_algorithm(ingredients, equipments, factors);
 
             tv.setText(renderRecipe(recipe));
         }
     }
 
-    private Recipe magic_algorithm(Map<String, Double> ingredients) {
+    private Recipe magic_algorithm(Map<String, Double> ingredients,
+                                   Map<String, Double> equipments,
+                                   Map<String, Double> factors) {
         // TODO: put into weiloon's magic algorithm
         return new Recipe("Tomato Soup");
     }
@@ -45,7 +50,7 @@ public class OutputActivity extends AppCompatActivity {
         return recipe.toString();
     }
 
-    private Map<String, Double> getIngredients(String items) {
+    private Map<String, Double> getItems(String items) {
         Map<String, Double> map = new HashMap<>();
 
         String[] lines = items.split("\n");
@@ -59,13 +64,5 @@ public class OutputActivity extends AppCompatActivity {
 
         return map;
     }
-
-//    private Map<String, Double> getEquipments(String equips) {
-//        return null;
-//    }
-//
-//    private Map<String, Integer> getFactors(String facts) {
-//        return null;
-//    }
 
 }

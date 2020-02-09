@@ -56,9 +56,7 @@ public class PageViewModel extends ViewModel {
             return "Section: " + input + " under progress";
             }
         });
-        Integer val = mIndex.getValue();
-        mIndex.setValue(val + 1);
-        mIndex.setValue(val);
+        mIndex.setValue(mIndex.getValue());
     }
 
     public void setIndex(int index) {
@@ -90,6 +88,10 @@ public class PageViewModel extends ViewModel {
     }
 
     public String equipmentsToString(Map<String, Double> items) {
+        items.put("pan", 1.0);
+        items.put("pot", 1.0);
+        items.put("oven", 1.0);
+
         StringBuilder sb = new StringBuilder();
         sb.append("Equipment" + NUM_SPACES);
         sb.append("Quantity");
@@ -106,6 +108,9 @@ public class PageViewModel extends ViewModel {
     }
 
     public String factorsToString(Map<String, Double> items) {
+        items.put("time", 60.0);
+        items.put("laziness", 10000.0);
+
         StringBuilder sb = new StringBuilder();
         sb.append("Factor" + NUM_SPACES);
         sb.append("Given Value");
