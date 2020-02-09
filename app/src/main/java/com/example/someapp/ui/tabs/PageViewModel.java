@@ -71,14 +71,12 @@ public class PageViewModel extends ViewModel {
 
     private String ingredientsToString(Map<String, Integer> items) {
         StringBuilder sb = new StringBuilder();
-        String spaces = " ";
-        sb.append("Ingredient");
-        sb.append(spaces);
+        String spaces = "               ";
+        sb.append("Ingredient" + spaces);
         sb.append("Quantity");
 
         for (String key : items.keySet()) {
-            sb.append(key);
-            sb.append(spaces);
+            sb.append(key + spaces);
             sb.append(items.get(key));
         }
 
