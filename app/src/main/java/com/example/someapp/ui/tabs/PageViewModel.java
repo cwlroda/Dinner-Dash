@@ -22,10 +22,13 @@ public class PageViewModel extends ViewModel {
             return ingredientsToString(mItems);
         } else if (input == 2) {
             // equipment tab
+            return equipmentsToString(mItems);
         } else if (input == 3) {
             // other factors tab
+            return factorsToString(mItems);
         }
-        return "Input your situation here: " + input;
+        // should not reach here
+        return "New feature to be added soon at Section: " + input + "!";
         }
     });
 
@@ -85,14 +88,12 @@ public class PageViewModel extends ViewModel {
 
     private String equipmentsToString(Map<String, Integer> items) {
         StringBuilder sb = new StringBuilder();
-        String spaces = " ";
-        sb.append("Equipment");
-        sb.append(spaces);
+        String spaces = "               ";
+        sb.append("Equipment" + spaces);
         sb.append("Quantity");
 
         for (String key : items.keySet()) {
-            sb.append(key);
-            sb.append(spaces);
+            sb.append(key + spaces);
             sb.append(items.get(key));
         }
 
@@ -100,8 +101,17 @@ public class PageViewModel extends ViewModel {
     }
 
     private String factorsToString(Map<String, Integer> items) {
-        // TODO
-        return "TODO";
+        StringBuilder sb = new StringBuilder();
+        String spaces = "               ";
+        sb.append("Factor" + spaces);
+        sb.append("Given Value");
+
+        for (String key : items.keySet()) {
+            sb.append(key + spaces);
+            sb.append(items.get(key));
+        }
+
+        return sb.toString();
     }
 
 }
