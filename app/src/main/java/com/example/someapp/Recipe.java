@@ -2,13 +2,15 @@ package com.example.someapp;
 
 import androidx.annotation.NonNull;
 
-import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-class Recipe {
+public class Recipe {
 
     private String name;
-    private HashMap<String, Integer> ingredients;
-    private HashMap<String, Integer> equipments;
+    private Map<String, Double> ingredients;
+    private Map<String, Double> equipments;
+    private String instructions;
     private int time;
 
     public Recipe() {
@@ -16,16 +18,18 @@ class Recipe {
     }
 
     public Recipe(String name) {
-        this(name, null, null, 0);
+        this(name, null, null, null, 0);
     }
 
     public Recipe(String name,
-                  HashMap<String, Integer> ingredients,
-                  HashMap<String, Integer> equipments,
+                  Map<String, Double> ingredients,
+                  Map<String, Double> equipments,
+                  String instructions,
                   int time) {
         this.name = name;
         this.ingredients = ingredients;
         this.equipments = equipments;
+        this.instructions = instructions;
         this.time = time;
     }
 
@@ -57,6 +61,16 @@ class Recipe {
                 sb.append("     " + key + ":      " + equipments.get(key));
                 sb.append('\n');
             }
+        } else {
+            sb.append("none!");
+        }
+
+        sb.append('\n');
+        sb.append('\n');
+        sb.append("Instructions: ");
+        if (instructions != null) {
+            sb.append('\n');
+            sb.append(instructions);
         } else {
             sb.append("none!");
         }

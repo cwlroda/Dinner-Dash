@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.example.someapp.query.Algorithm;
+
 public class OutputActivity extends AppCompatActivity {
 
     @Override
@@ -42,8 +44,9 @@ public class OutputActivity extends AppCompatActivity {
     private Recipe magic_algorithm(Map<String, Double> ingredients,
                                    Map<String, Double> equipments,
                                    Map<String, Double> factors) {
-        // TODO: put into weiloon's magic algorithm
-        return new Recipe();
+        // magic algorithm
+        Algorithm algo = new Algorithm(ingredients, 0);
+        return algo.run();
     }
 
     private String renderRecipe(Recipe recipe) {
