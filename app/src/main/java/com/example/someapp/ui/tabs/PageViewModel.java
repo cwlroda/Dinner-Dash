@@ -45,6 +45,10 @@ public class PageViewModel extends ViewModel {
         return mText;
     }
 
+    public Map<String, Integer> getItems() {
+        return mItems;
+    }
+
     private String ingredientsToString(Map<String, Integer> items) {
         StringBuilder sb = new StringBuilder();
         String spaces = " ";
