@@ -88,20 +88,24 @@ public class InputActivity extends AppCompatActivity {
         Intent intent = new Intent(this, OutputActivity.class);
 
         // for ingredients
-        PageViewModel ingrdPVM = this.sectionsPagerAdapter.getFragment(0).getPageViewModel();
-        Map<String, Double> ingrdItems = ingrdPVM.getItems();
-        intent.putExtra("ingredients", ingrdPVM.ingredientsToString(ingrdItems));
+        if (this.sectionsPagerAdapter.getFragment(0) != null) {
+            PageViewModel ingrdPVM = this.sectionsPagerAdapter.getFragment(0).getPageViewModel();
+            Map<String, Double> ingrdItems = ingrdPVM.getItems();
+            intent.putExtra("ingredients", ingrdPVM.ingredientsToString(ingrdItems));
+        }
 
         // for equipments
-        PageViewModel equipPVM = this.sectionsPagerAdapter.getFragment(1).getPageViewModel();
-        Map<String, Double> equipItems = equipPVM.getItems();
-        intent.putExtra("equipments", equipPVM.equipmentsToString(equipItems));
+        if (this.sectionsPagerAdapter.getFragment(1) != null) {
+            PageViewModel equipPVM = this.sectionsPagerAdapter.getFragment(1).getPageViewModel();
+            Map<String, Double> equipItems = equipPVM.getItems();
+            intent.putExtra("equipments", equipPVM.equipmentsToString(equipItems));
+        }
 
         // for factors
         if (this.sectionsPagerAdapter.getFragment(2) != null) {
             PageViewModel factPVM = this.sectionsPagerAdapter.getFragment(2).getPageViewModel();
             Map<String, Double> factItems = factPVM.getItems();
-            intent.putExtra("factors", ingrdPVM.factorsToString(factItems));
+            intent.putExtra("factors", factPVM.factorsToString(factItems));
         }
 
         startActivity(intent);
