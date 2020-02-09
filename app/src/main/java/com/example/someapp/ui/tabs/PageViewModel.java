@@ -14,6 +14,8 @@ public class PageViewModel extends ViewModel {
     private Map<String, Integer> mItems = new HashMap<>();
     private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
 
+    private static final String NUM_SPACES = "                  ";
+
     private LiveData<String> mText = Transformations.map(mIndex, new Function<Integer, String>() {
         @Override
         public String apply(Integer input) {
@@ -33,18 +35,16 @@ public class PageViewModel extends ViewModel {
     });
 
     public void addItem(String item) {
-        if (mItems.containsKey(item)) {
-            mItems.put(item, mItems.get(item));
-        } else {
-            mItems.put(item, 1);
-        }
+        mItems.put(item, (mItems.containsKey(item)) ? mItems.get(item) + 1 : 1);
         updateLiveText();
     }
 
     private void updateLiveText() {
+        System.out.println("updateLiveText called. before: " + mIndex.getValue());
         mText = Transformations.map(mIndex, new Function<Integer, String>() {
             @Override
             public String apply(Integer input) {
+                System.out.println("switching to tab " + input);
             if (input == 1) {
                 // ingredients tab
                 return ingredientsToString(mItems);
@@ -58,6 +58,9 @@ public class PageViewModel extends ViewModel {
             return "Section: " + input + " under progress";
             }
         });
+        Integer val = mIndex.getValue();
+        mIndex.setValue(val + 1);
+        mIndex.setValue(val);
     }
 
     public void setIndex(int index) {
@@ -74,13 +77,15 @@ public class PageViewModel extends ViewModel {
 
     private String ingredientsToString(Map<String, Integer> items) {
         StringBuilder sb = new StringBuilder();
-        String spaces = "               ";
-        sb.append("Ingredient" + spaces);
+        sb.append("Ingredient" + NUM_SPACES);
         sb.append("Quantity");
 
+        sb.append('\n');
+        sb.append('\n');
         for (String key : items.keySet()) {
-            sb.append(key + spaces);
+            sb.append(key + NUM_SPACES);
             sb.append(items.get(key));
+            sb.append('\n');
         }
 
         return sb.toString();
@@ -88,12 +93,14 @@ public class PageViewModel extends ViewModel {
 
     private String equipmentsToString(Map<String, Integer> items) {
         StringBuilder sb = new StringBuilder();
-        String spaces = "               ";
-        sb.append("Equipment" + spaces);
+        sb.append("Equipment" + NUM_SPACES);
         sb.append("Quantity");
 
+        sb.append('\n');
+        sb.append('\n');
         for (String key : items.keySet()) {
-            sb.append(key + spaces);
+            sb.append('\n');
+            sb.append(key + NUM_SPACES);
             sb.append(items.get(key));
         }
 
@@ -102,13 +109,15 @@ public class PageViewModel extends ViewModel {
 
     private String factorsToString(Map<String, Integer> items) {
         StringBuilder sb = new StringBuilder();
-        String spaces = "               ";
-        sb.append("Factor" + spaces);
+        sb.append("Factor" + NUM_SPACES);
         sb.append("Given Value");
 
+        sb.append('\n');
+        sb.append('\n');
         for (String key : items.keySet()) {
-            sb.append(key + spaces);
+            sb.append(key + NUM_SPACES);
             sb.append(items.get(key));
+            sb.append('\n');
         }
 
         return sb.toString();

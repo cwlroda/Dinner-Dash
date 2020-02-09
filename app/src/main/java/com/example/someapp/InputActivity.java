@@ -68,7 +68,7 @@ public class InputActivity extends AppCompatActivity {
             public void onClick(DialogInterface arg0, int arg1) {
                 String m_Text = input.getText().toString();
                 // TODO: change this to have quantity too
-                Toast.makeText(InputActivity.this,"added ingredient", Toast.LENGTH_LONG).show();
+                Toast.makeText(InputActivity.this,"added", Toast.LENGTH_LONG).show();
                 sectionsPagerAdapter.getFragment(0).addItem(m_Text);
             }
         });
@@ -86,6 +86,7 @@ public class InputActivity extends AppCompatActivity {
 
     private void gotoRecipeActivity() {
         Intent intent = new Intent(this, OutputActivity.class);
+//        this.sectionsPagerAdapter.getFragment(0).getPageView().getText()
         String items = "Tomato 1";
         intent.putExtra("items", items);
         startActivity(intent);
