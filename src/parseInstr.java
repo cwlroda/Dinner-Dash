@@ -1,6 +1,9 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,12 +45,14 @@ public class parseInstr {
         System.out.println(instrList);
 
         List<List<String>> outParams = new ArrayList<>();
+
         for (String instr : instrList) {
           List<String> indivInstrs = new ArrayList<>();
 
           indivInstrs.add(instr);
           indivInstrs.add(Integer.toString(calcTime(instr)));
           indivInstrs.add(Boolean.toString(isIdle(instr)));
+          indivInstrs.add(checkResources(instr));
 
           outParams.add(indivInstrs);
         }
@@ -55,12 +60,45 @@ public class parseInstr {
         for (List<String> indivInstr : outParams) {
           System.out.println(indivInstr);
         }
+      
+      String fileJson = fileName.replace(".txt", ".json");
+      File outputFile = new File("./output/"+fileJson);
+
+      try{
+        PrintWriter printWriter = new PrintWriter(new FileWriter(outputFile));
+        printWriter.print("instructions = {");
+        for(List<String> str : outParams) {
+          String ins0 = str.get(0);
+          String ins1 = str.get(1);
+          String ins2 = str.get(2);
+          String ins3 = str.get(3);
+
+          printWriter.print(ins0 + ":{" + ins1 + ", " + ins2 + ", " + ins3 + "}");
+        }
+        printWriter.print("}");
+        printWriter.close();
+
+        boolean fileCreated = outputFile.createNewFile();
+        assert(fileCreated);
+      } catch (Exception e) {
+        e.getStackTrace();
       }
-
-      File outputFile = new File("./output/"+fileName);
-
+      
+    }
     }
   }
+
+  private static String checkResources(String resources) {
+    String[] appliances = {"oven", "steamer", "pan", "skillet", "microwave", "cooker"};
+
+      for (String appliance : appliances) {
+        if (resources.contains(appliance)) {
+          return appliance;
+        }
+      }
+      return null;
+  }
+
 
   private static boolean isIdle(String idle) {
     String[] idlewords = {"stew", "bake", "preheat", "steam", "boil", "cook", "blend"};
