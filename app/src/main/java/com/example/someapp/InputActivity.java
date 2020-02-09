@@ -86,8 +86,7 @@ public class InputActivity extends AppCompatActivity {
 
     private void gotoRecipeActivity() {
         Intent intent = new Intent(this, OutputActivity.class);
-//        this.sectionsPagerAdapter.getFragment(0).getPageView().getText()
-        String items = "Tomato 1";
+        String items = this.sectionsPagerAdapter.getFragment(0).getPageViewModel().getText().getValue();
         intent.putExtra("items", items);
         startActivity(intent);
     }
