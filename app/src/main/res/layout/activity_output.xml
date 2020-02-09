@@ -10,9 +10,19 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Recipe Here"
-        tools:layout_editor_absoluteX="167dp"
-        tools:layout_editor_absoluteY="122dp" />
+        android:layout_centerInParent="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp"
+        android:text="@string/recipe_here"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="28sp"
+        android:typeface="normal"
+        app:fontFamily="sans-serif-condensed-light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

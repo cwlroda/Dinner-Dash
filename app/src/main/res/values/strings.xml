@@ -4,4 +4,5 @@
     <string name="tab_text_1">Ingredients</string>
     <string name="tab_text_2">Equipments</string>
     <string name="tab_text_3">Other Factors</string>
+    <string name="recipe_here">Recipe Here</string>
 </resources>
