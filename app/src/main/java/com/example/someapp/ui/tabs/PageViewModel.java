@@ -14,7 +14,7 @@ public class PageViewModel extends ViewModel {
     private Map<String, Double> mItems = new HashMap<>();
     private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
 
-    private static final String NUM_SPACES = "                  ";
+    private static final String NUM_SPACES = "                       ";
 
     private LiveData<String> mText = Transformations.map(mIndex, new Function<Integer, String>() {
         @Override

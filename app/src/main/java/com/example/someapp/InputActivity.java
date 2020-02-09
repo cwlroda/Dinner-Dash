@@ -43,9 +43,6 @@ public class InputActivity extends AppCompatActivity {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: idk why but it still doesn't show up
-//                ViewGroup vg = findViewById (R.id.view_pager);
-//                vg.invalidate();
                 openPopUp(sectionsPagerAdapter);
             }
         });
@@ -60,7 +57,7 @@ public class InputActivity extends AppCompatActivity {
 
     private void openPopUp(final SectionsPagerAdapter sectionsPagerAdapter) {
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Adding Ingredients!");
+        alertDialogBuilder.setMessage("Adding Items!");
 
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -70,7 +67,7 @@ public class InputActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
                 String m_Text = input.getText().toString();
-                // TODO: change this to have quantity too
+                // FUTURE: change this to have quantity
                 Toast.makeText(InputActivity.this,"added", Toast.LENGTH_LONG).show();
                 sectionsPagerAdapter.getFragment(0).addItem(m_Text);
             }
@@ -95,15 +92,15 @@ public class InputActivity extends AppCompatActivity {
         Map<String, Double> ingrdItems = ingrdPVM.getItems();
         intent.putExtra("ingredients", ingrdPVM.ingredientsToString(ingrdItems));
 
-        // for ingredients
-        PageViewModel equipPVM = this.sectionsPagerAdapter.getFragment(1).getPageViewModel();
-        Map<String, Double> equipItems = equipPVM.getItems();
-        intent.putExtra("equipments", equipPVM.equipmentsToString(equipItems));
-
-        // for ingredients
-        PageViewModel factPVM = this.sectionsPagerAdapter.getFragment(2).getPageViewModel();
-        Map<String, Double> factItems = factPVM.getItems();
-        intent.putExtra("factors", ingrdPVM.factorsToString(factItems));
+//        // for equipments
+//        PageViewModel equipPVM = this.sectionsPagerAdapter.getFragment(1).getPageViewModel();
+//        Map<String, Double> equipItems = equipPVM.getItems();
+//        intent.putExtra("equipments", equipPVM.equipmentsToString(equipItems));
+//
+//        // for factors
+//        PageViewModel factPVM = this.sectionsPagerAdapter.getFragment(2).getPageViewModel();
+//        Map<String, Double> factItems = factPVM.getItems();
+//        intent.putExtra("factors", ingrdPVM.factorsToString(factItems));
 
         startActivity(intent);
     }

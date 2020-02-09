@@ -49,9 +49,9 @@ public class OutputActivity extends AppCompatActivity {
         Map<String, Double> map = new HashMap<>();
 
         String[] lines = items.split("\n");
-        // can ignore the first line - bc it is "Ingredient ... Quantity"
-        for (int i = 1; i < lines.length; i++) {
-            String[] tokens = lines[i].split("[ ]+");
+        // can ignore the first two lines - bc it is "Ingredient ... Quantity\n"
+        for (int i = 2; i < lines.length; i++) {
+            String[] tokens = lines[i].split("[ \t]+");
             map.put(tokens[0], Double.parseDouble(tokens[1]));
         }
 
