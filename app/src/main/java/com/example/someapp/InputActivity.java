@@ -98,9 +98,11 @@ public class InputActivity extends AppCompatActivity {
         intent.putExtra("equipments", equipPVM.equipmentsToString(equipItems));
 
         // for factors
-        PageViewModel factPVM = this.sectionsPagerAdapter.getFragment(2).getPageViewModel();
-        Map<String, Double> factItems = factPVM.getItems();
-        intent.putExtra("factors", ingrdPVM.factorsToString(factItems));
+        if (this.sectionsPagerAdapter.getFragment(2) != null) {
+            PageViewModel factPVM = this.sectionsPagerAdapter.getFragment(2).getPageViewModel();
+            Map<String, Double> factItems = factPVM.getItems();
+            intent.putExtra("factors", ingrdPVM.factorsToString(factItems));
+        }
 
         startActivity(intent);
     }

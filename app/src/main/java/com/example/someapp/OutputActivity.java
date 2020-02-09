@@ -57,7 +57,7 @@ public class OutputActivity extends AppCompatActivity {
         // can ignore the first two lines - bc it is "Ingredient ... Quantity\n"
         for (int i = 2; i < lines.length; i++) {
             String[] tokens = lines[i].split("[ \t]+");
-            if (tokens[0] != null && tokens[1] != null) {
+            if (tokens.length >=2 && tokens[0] != null && tokens[1] != null) {
                 map.put(tokens[0], Double.parseDouble(tokens[1]));
             }
         }
