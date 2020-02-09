@@ -1,8 +1,6 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -65,7 +63,14 @@ public class parseInstr {
   }
 
   private static boolean isIdle(String idle) {
-    return false;
+    String[] idlewords = {"stew", "bake", "preheat", "steam", "boil", "cook", "blend"};
+
+        for (String idleword : idlewords) {
+          if (idle.contains(idleword)) {
+            return true;
+          }
+        }
+        return false;
   }
 
   private static int calcTime(String instr) {
@@ -91,11 +96,11 @@ public class parseInstr {
       if (containsMins) {
         finalTime += getMinutesString(instrAsList);
       } else {
-        String[] keywords = {"stew", "fry", "stir", "place"};
+        String[] keywords = {"stir", "mix", "cut", "whisk", "beat", "saute", "rinse"};
 
         for (String keyword : keywords) {
           if (instr.contains(keyword)) {
-            finalTime += 5;
+            finalTime += 3;
           }
         }
       }
@@ -116,15 +121,4 @@ public class parseInstr {
     String noOfMins = instrAsList[minsIndex - 1];
     return Integer.valueOf(noOfMins);
   }
-
-/*
-    private static String calcIdle(String intr) {
-        return 0;
-    }
-
-    private static String calcResource(String intr) {
-
-    }
-*/
-
 }
