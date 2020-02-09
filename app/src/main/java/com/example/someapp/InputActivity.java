@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,11 +19,15 @@ import com.google.android.material.tabs.TabLayout;
 
 public class InputActivity extends AppCompatActivity {
 
+    private SectionsPagerAdapter sectionsPagerAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input);
-        final SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        if (sectionsPagerAdapter == null) {
+            sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        }
         final ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
@@ -30,10 +35,14 @@ public class InputActivity extends AppCompatActivity {
 
         FloatingActionButton addBtn = findViewById(R.id.addBtn);
         FloatingActionButton procBtn = findViewById(R.id.proceedBtn);
+        TextView tv = findViewById(R.id.textView);
 
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // TODO: idk why but it still doesn't show up
+//                ViewGroup vg = findViewById (R.id.view_pager);
+//                vg.invalidate();
                 openPopUp(sectionsPagerAdapter);
             }
         });
@@ -47,7 +56,7 @@ public class InputActivity extends AppCompatActivity {
     }
 
     private void openPopUp(final SectionsPagerAdapter sectionsPagerAdapter) {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("Adding Ingredients!");
 
         final EditText input = new EditText(this);
@@ -77,6 +86,8 @@ public class InputActivity extends AppCompatActivity {
 
     private void gotoRecipeActivity() {
         Intent intent = new Intent(this, OutputActivity.class);
+        String items = "Tomato 1";
+        intent.putExtra("items", items);
         startActivity(intent);
     }
 
