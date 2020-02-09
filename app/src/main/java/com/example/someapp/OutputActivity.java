@@ -43,7 +43,7 @@ public class OutputActivity extends AppCompatActivity {
                                    Map<String, Double> equipments,
                                    Map<String, Double> factors) {
         // TODO: put into weiloon's magic algorithm
-        return new Recipe("Tomato Soup");
+        return new Recipe();
     }
 
     private String renderRecipe(Recipe recipe) {

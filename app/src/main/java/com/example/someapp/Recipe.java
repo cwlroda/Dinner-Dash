@@ -11,6 +11,10 @@ class Recipe {
     private HashMap<String, Integer> equipments;
     private int time;
 
+    public Recipe() {
+        this("Water");
+    }
+
     public Recipe(String name) {
         this(name, null, null, 0);
     }
