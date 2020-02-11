@@ -1,5 +1,5 @@
 # DinnerDash!
-## Built during IC Hack 2020
+### _Built for IC Hack 2020_
 Have you ever lamented the fact that despite having a luxurious kitchen full of quality ingredients and reliable appliances, only to realize that you do not have the time to cook, and therefore causing your daily meals to be lackluster? Fret no more, for we have the perfect app for you!
 Introducing DinnerDash, the interactive app that allows you to cook more than one new dish concurrently within a short preparation time! 
 
